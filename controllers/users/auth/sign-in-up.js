@@ -164,7 +164,7 @@ sgin_in_up_route.post("/signup", async (req, res) => {
         }
         await connnectDB1.query(sql);
 
-        const mailData = { firstN: firstName, lastN: lastName, otp: otp };
+        const mailData = { firstN: firstName, lastN: lastName, otp, email };
 
         await mailOtp(mailData);
 

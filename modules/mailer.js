@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
 
-const senderMail = "tonynereus@gmail.com";
+const senderMail = process.env.NODEMAILER_EMAIL;
 
 const transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: senderMail,
-        pass: "xnckrjrwneltappx"
+        pass: process.env.NODEMAILER_PASS,
     }
 });
 
@@ -79,10 +79,7 @@ const mailOtp = async (user) => {
     // Send mail using transporter
     return new Promise(function (resolve, reject) {
         transport.sendMail({
-            from: {
-                name: "SharpPay",
-                address:senderMail
-            },
+            from: `"SharpPay Test" <${senderMail}>`,
             to: email,
             subject: "Account Verification",
             text: textContent, // Optional plain-text version of the message
