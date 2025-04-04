@@ -155,7 +155,13 @@ sgin_in_up_route.post("/signup", async (req, res) => {
         connnectDB1 = await connnectDB.getConnection();
         connnectDB1.beginTransaction();
         //sql query to insert user
-        var sql = `INSERT INTO users(id,email,lastN,firstN,countryCode,phone,pswd,otp,ref_code,ref_by) VALUES('${ursId}','${email}','${lastName}','${firstName}','${countryCode}','${phoneNumber}','${encryptedPassword}','${otp}','${refId}','${reff}')`;
+        let sql;
+        // Check for refId
+        if( refId && refId !== 'undefined' && reff ) {
+            sql = `INSERT INTO users(id,email,lastN,firstN,countryCode,phone,pswd,otp,ref_code,ref_by) VALUES('${ursId}','${email}','${lastName}','${firstName}','${countryCode}','${phoneNumber}','${encryptedPassword}','${otp}','${refId}','${reff}')`;
+        } else {
+            sql = `INSERT INTO users(id,email,lastN,firstN,countryCode,phone,pswd,otp) VALUES('${ursId}','${email}','${lastName}','${firstName}','${countryCode}','${phoneNumber}','${encryptedPassword}','${otp}'')`;
+        }
         await connnectDB1.query(sql);
 
         const mailData = { firstN: firstName, lastN: lastName, otp: otp };
