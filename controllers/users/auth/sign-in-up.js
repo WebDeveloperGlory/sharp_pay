@@ -160,7 +160,7 @@ sgin_in_up_route.post("/signup", async (req, res) => {
         if( refId && refId !== 'undefined' && reff ) {
             sql = `INSERT INTO users(id,email,lastN,firstN,countryCode,phone,pswd,otp,ref_code,ref_by) VALUES('${ursId}','${email}','${lastName}','${firstName}','${countryCode}','${phoneNumber}','${encryptedPassword}','${otp}','${refId}','${reff}')`;
         } else {
-            sql = `INSERT INTO users(id,email,lastN,firstN,countryCode,phone,pswd,otp) VALUES('${ursId}','${email}','${lastName}','${firstName}','${countryCode}','${phoneNumber}','${encryptedPassword}','${otp}'')`;
+            sql = `INSERT INTO users(id,email,lastN,firstN,countryCode,phone,pswd,otp) VALUES('${ursId}','${email}','${lastName}','${firstName}','${countryCode}','${phoneNumber}','${encryptedPassword}','${otp}')`;
         }
         await connnectDB1.query(sql);
 
