@@ -91,7 +91,7 @@ function validatePassword(password) {
 }
 
 const TokenVerify = (req, res, next, key) => {
-    const token = req.headers['Authorization'];
+    const token = req.headers.Authorization || req.headers.authorization;
 
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
